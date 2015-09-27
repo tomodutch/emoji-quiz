@@ -39,15 +39,11 @@
             'my fair lady',
             'in the loop'
           ]
-        },
-        movie: {
-          type: String,
-          notify: true,
         }
       },
-      setRandomMovie: function() {
+      getRandomMovie: function() {
         var index = Math.floor(Math.random() * this.movies.length);
-        this.movie = this.movies[index];
+        return this.movies[index];
       }
     });
   })();

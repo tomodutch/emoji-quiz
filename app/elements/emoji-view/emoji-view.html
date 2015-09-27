@@ -12,11 +12,12 @@
         padding: 25px;
       }
     </style>
-    <emoji-data id="data" movie="{{movie}}"></emoji-data>
+    <emoji-data id="data"></emoji-data>
 
     <paper-material elevation="1">
       <h1>Can you guess the right movie title?</h1>
       <emoji-text text="[[movie]]"></emoji-text>
+      <emoji-answer answer="{{answer}}" on-answer="checkAnswer"></emoji-answer>
     </paper-material>
   </template>
   <script>
@@ -27,15 +28,20 @@
       is: 'emoji-view',
       properties: {
         movie: String,
-        emojiReady: {
-          type: Boolean,
-          value: false
-        }
+        answer: String
       },
       start: function() {
-        this.$.data.setRandomMovie();
+        this.movie = this.$.data.getRandomMovie();
+      },
+      checkAnswer: function(e, answer) {
+        if (this.movie.toLowerCase() == answer.toLowerCase()) {
+          // TODO: nice message
+          console.log('correct!');
+        } else {
+          console.log('wrong');
+        }
       }
     });
-  })(document);
+  })();
   </script>
 </dom-module>

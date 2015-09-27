@@ -1,0 +1,36 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="emoji-answer">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+
+    <form is="iron-form" id="form">
+      <paper-input label="answer" error-message="Wrong answer" name="answer"></paper-input>
+    </form>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'emoji-answer',
+      listeners: {
+        'iron-form-submit': '_submit'
+      },
+      properties: {
+        answer: {
+          type: String,
+          notify: true
+        }
+      },
+      _submit: function(e, data) {
+        this.fire('answer', data.answer);
+      }
+    });
+  })();
+  </script>
+</dom-module>
