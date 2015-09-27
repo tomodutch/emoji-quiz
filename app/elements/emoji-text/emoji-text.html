@@ -1,0 +1,39 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<script src="../../bower_components/emoji-translate/emoji-translate.js"></script>
+
+<dom-module id="emoji-text">
+  <template id="emoji">
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <span>[[emojified]]</span>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'emoji-text',
+
+      properties: {
+        text: {
+          type: String
+        },
+        emojified: {
+          type: String,
+          computed: 'translate(text)'
+        },
+      },
+      translate: function(text) {
+        return text.split(' ').map(function(word) {
+          return getMeAnEmoji(word) || word;
+        }).join(' ');
+      },
+      ready: function() {
+      }
+    });
+  })();
+  </script>
+</dom-module>

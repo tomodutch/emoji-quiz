@@ -16,7 +16,7 @@
 
     <paper-material elevation="1">
       <h1>Can you guess the right movie title?</h1>
-      <span id="title">{{movie}}</span>
+      <emoji-text text="[[movie]]"></emoji-text>
     </paper-material>
   </template>
   <script>
@@ -25,14 +25,17 @@
 
     Polymer({
       is: 'emoji-view',
-
       properties: {
-        movie: String
+        movie: String,
+        emojiReady: {
+          type: Boolean,
+          value: false
+        }
       },
       ready: function() {
         this.$.data.setRandomMovie();
       }
     });
-  })();
+  })(document);
   </script>
 </dom-module>
