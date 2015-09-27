@@ -30,8 +30,6 @@
         return text.split(' ').map(function(word) {
           return window.getMeAnEmoji(word) || word;
         }).join(' ');
-      },
-      ready: function() {
       }
     });
   })(window);
