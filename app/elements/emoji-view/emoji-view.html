@@ -12,8 +12,11 @@
         padding: 25px;
       }
     </style>
+    <emoji-data id="data" movie="{{movie}}"></emoji-data>
+
     <paper-material elevation="1">
       <h1>Can you guess the right movie title?</h1>
+      <span id="title">{{movie}}</span>
     </paper-material>
   </template>
   <script>
@@ -24,11 +27,10 @@
       is: 'emoji-view',
 
       properties: {
-        foo: {
-          type: String,
-          value: 'emoji-view',
-          notify: true
-        }
+        movie: String
+      },
+      ready: function() {
+        this.$.data.setRandomMovie();
       }
     });
   })();

@@ -1,0 +1,55 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="emoji-data">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'emoji-data',
+
+      properties: {
+        movies: {
+          type: Array,
+          readOnly: true,
+          value: [
+            'snakes on a plane',
+            'lord of the rings',
+            'some like it hot',
+            'mean girls',
+            'the naked gun',
+            'the grand Budapest hotel',
+            'gone girl',
+            'how to train your dragon',
+            'the dark knight',
+            'star wars',
+            'fight club',
+            'alien',
+            'shaun the sheep',
+            'the look of silence',
+            'the diary of a teenage girl',
+            'red army',
+            'my fair lady',
+            'in the loop'
+          ]
+        },
+        movie: {
+          type: String,
+          notify: true,
+        }
+      },
+      setRandomMovie: function() {
+        var index = Math.floor(Math.random() * this.movies.length);
+        this.movie = this.movies[index];
+      }
+    });
+  })();
+  </script>
+</dom-module>
