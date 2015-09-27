@@ -24,7 +24,7 @@
     </paper-card>
   </template>
   <script>
-  (function() {
+  (function(window) {
     'use strict';
 
     Polymer({
@@ -40,7 +40,7 @@
       },
       checkAnswer: function() {
         if (this.movie && this.movie.toLowerCase() === this.answer.toLowerCase()) {
-          alert('Well done! Can you get the next one right too?');
+          window.alert('Well done! Can you get the next one right too?');
           this.answer = '';
           this.start();
         }
@@ -49,6 +49,6 @@
         this.movie = this.$.data.getRandomMovie();
       }
     });
-  })();
+  })(window);
   </script>
 </dom-module>
