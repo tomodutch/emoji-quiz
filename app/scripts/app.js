@@ -1,6 +1,8 @@
-(function () {
-  var app = document.querySelector('#app');
-  document.addEventListener('emoji-ready', function () {
-    var view = document.querySelector('#emojiView').start();
-  });
+(function (document) {
+  var emoji = window.setInterval(function () {
+    if (window.getMeAnEmoji) {
+      window.clearInterval(emoji);
+      document.querySelector('#emojiView').start();
+    }
+  }, 200);
 })(document);

@@ -11,7 +11,7 @@
     <span>[[emojified]]</span>
   </template>
   <script>
-  (function() {
+  (function(window) {
     'use strict';
 
     Polymer({
@@ -28,12 +28,10 @@
       },
       translate: function(text) {
         return text.split(' ').map(function(word) {
-          return getMeAnEmoji(word) || word;
+          return window.getMeAnEmoji(word) || word;
         }).join(' ');
-      },
-      ready: function() {
       }
     });
-  })();
+  })(window);
   </script>
 </dom-module>

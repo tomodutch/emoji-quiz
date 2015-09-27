@@ -7,17 +7,21 @@
         display: block;
         padding: 25px;
       }
-
-      paper-material {
+      paper-card {
         padding: 25px;
       }
-    </style>
-    <emoji-data id="data" movie="{{movie}}"></emoji-data>
 
-    <paper-material elevation="1">
-      <h1>Can you guess the right movie title?</h1>
-      <emoji-text text="[[movie]]"></emoji-text>
-    </paper-material>
+      emoji-text {
+        font-size: 25px;
+      }
+    </style>
+    <emoji-data id="data"></emoji-data>
+    <paper-card heading="Can you guess the right movie title?">
+      <div class="card-content">
+        <emoji-text text="[[movie]]"></emoji-text>
+          <paper-input value="{{answer::input}}" label="answer"></paper-input>
+      </div>
+    </paper-card>
   </template>
   <script>
   (function() {
@@ -26,16 +30,25 @@
     Polymer({
       is: 'emoji-view',
       properties: {
-        movie: String,
-        emojiReady: {
-          type: Boolean,
-          value: false
+        movie: {
+          type: String,
+        },
+        answer: {
+          type: String,
+          observer: 'checkAnswer'
+        }
+      },
+      checkAnswer: function() {
+        if (this.movie && this.movie.toLowerCase() === this.answer.toLowerCase()) {
+          alert('Well done! Can you get the next one right too?');
+          this.answer = '';
+          this.start();
         }
       },
       start: function() {
-        this.$.data.setRandomMovie();
+        this.movie = this.$.data.getRandomMovie();
       }
     });
-  })(document);
+  })();
   </script>
 </dom-module>
