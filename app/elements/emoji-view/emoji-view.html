@@ -12,14 +12,14 @@
       }
 
       emoji-text {
-        font-size: 20px;
+        font-size: 25px;
       }
     </style>
     <emoji-data id="data"></emoji-data>
     <paper-card heading="Can you guess the right movie title?">
       <div class="card-content">
         <emoji-text text="[[movie]]"></emoji-text>
-        <emoji-answer answer="{{answer}}" on-answer="checkAnswer"></emoji-answer>
+          <paper-input value="{{answer::input}}" label="answer"></paper-input>
       </div>
     </paper-card>
   </template>
@@ -30,19 +30,23 @@
     Polymer({
       is: 'emoji-view',
       properties: {
-        movie: String,
-        answer: String
+        movie: {
+          type: String,
+        },
+        answer: {
+          type: String,
+          observer: 'checkAnswer'
+        }
+      },
+      checkAnswer: function() {
+        if (this.movie && this.movie.toLowerCase() === this.answer.toLowerCase()) {
+          alert('Well done! Can you get the next one right too?');
+          this.answer = '';
+          this.start();
+        }
       },
       start: function() {
         this.movie = this.$.data.getRandomMovie();
-      },
-      checkAnswer: function(e, answer) {
-        if (this.movie.toLowerCase() == answer.toLowerCase()) {
-          // TODO: nice message
-          console.log('correct!');
-        } else {
-          console.log('wrong');
-        }
       }
     });
   })();
