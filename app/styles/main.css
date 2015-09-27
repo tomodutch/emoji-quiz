@@ -12,3 +12,8 @@ body {
   font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   color: #333;
 }
+
+emoji-view {
+   margin: 0 auto;
+   display: block;
+}
